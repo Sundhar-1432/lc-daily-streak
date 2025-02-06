@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int tupleSameProduct(vector<int>& nums) {
+    unordered_map<int,int>freq_uence;
+        int max_count=0;
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                int pro=nums[i]*nums[j];
+                freq_uence[pro]++;
+            }
+        }
+        for(auto it:freq_uence){
+            int n=it.second;
+            if(n>1)max_count+=((n*(n-1))/2)*8;
+        }
+        return max_count;
+    }
+};
