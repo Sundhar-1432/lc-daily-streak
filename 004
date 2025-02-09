@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> queryResults(int limit, vector<vector<int>>& queries){
+    unordered_map<int,int>ballcolor,colorfreq;
+    vector<int>res;
+    int distnictcolor=0;
+
+    for(auto it:queries){
+        
+        int color=it[1];
+        int ball=it[0];
+        if(ballcolor.find(ball)!=ballcolor.end()){
+            int prevcolor=ballcolor[ball];
+            colorfreq[prevcolor]--;
+            if(colorfreq[prevcolor]==0){
+                distnictcolor--;
+            }
+        }
+        
+        ballcolor[ball]=color;
+        if(colorfreq[color]==0){
+           distnictcolor++; 
+        }
+        colorfreq[color]++;
+        res.push_back(distnictcolor);
+    }
+
+   return res;
+    }
+};
