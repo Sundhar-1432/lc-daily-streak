@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maximumSum(vector<int>& nums) {
+        unordered_map<int,int>sums;
+        int result=-1;
+        for (auto& num : nums) {
+            int sum = 0, temp = num;
+            while (temp) {
+                int la = temp % 10;
+                sum += la;
+                temp /= 10;
+            }
+            if(sums.find(sum)!=sums.end()){
+                result=max(sums[sum]+num,result);
+            }
+            sums[sum]=max(sums[sum],num);
+        }
+        return result;
+    }
+};
