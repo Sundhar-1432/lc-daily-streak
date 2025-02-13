@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        int count =0;
+        priority_queue<long long,vector<long long>,greater<long long>>num(nums.begin(),nums.end());
+        while(!num.empty()){
+            long long min1=num.top();
+            num.pop();
+            if(min1>=k)return count;
+            long long min2=num.top();
+            num.pop();
+            num.push(min(min1,min2)*2+max(min1,min2));
+            count++;
+        }
+    return count;
+    }
+};
